@@ -1,0 +1,81 @@
+.App {
+    text-align: center;
+    font-family: Arial, sans-serif;
+}
+
+h1 {
+    color: #333;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* הוסף אפקט צל טקסט */
+}
+
+input[type="number"] {
+    width: 50px;
+    margin: 5px;
+}
+
+button {
+    margin: 10px;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* הוסף אפקט צל לכפתורים */
+    transition: background-color 0.3s ease; /* הוסף אנימציה חלקה לשינוי צבע הרקע */
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+.board {
+    display: inline-block;
+    border: 2px solid #333;
+    border-radius: 10px;
+    margin-top: 20px;
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.5); /* הוסף אפקט צל ללוח המשחק */
+}
+
+.row {
+    display: flex;
+}
+
+.cell {
+    width: 50px;
+    height: 50px;
+    border: 1px solid #333;
+    box-sizing: border-box;
+    transition: background-color 0.3s ease; /* הוסף אנימציה חלקה לשינוי צבע הרקע */
+}
+
+.player-one {
+    background-color: #ff3333;
+}
+
+.player-two {
+    background-color: #33cc33;
+}
+
+.message {
+    margin-top: 20px;
+}
+
+.message p {
+    font-size: 1.2em;
+}
+
+.message button {
+    margin-top: 10px;
+    background-color: #333; /* שנה צבע לכפתור */
+    color: white; /* שנה צבע לטקסט */
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* הוסף אפקט צל לכפתור */
+}
+
+.message button:hover {
+    background-color: #555; /* שנה צבע בעת העטלפות */
+}
