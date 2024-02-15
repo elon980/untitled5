@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import './styles.css'; // Import CSS file for styling
 import Board from './Board';
-import Cell from './Cell'; // לא נדרש לייבא אם השתמשת במשבצת רק כאן
+
+
+
 
 const Player = {
     ONE: 1,
@@ -15,7 +17,7 @@ const colors = [
     { code: '#3333ff', name: 'Blue' },
     { code: '#ffff33', name: 'Yellow' },
     { code: '#ff33ff', name: 'Pink' },
-]; // List of available colors with names
+];
 
 class App extends Component {
     constructor(props) {
@@ -35,14 +37,14 @@ class App extends Component {
     initializeBoard = () => {
         const { rows, cols, playerColors } = this.state;
         if (playerColors[Player.ONE] !== '' && playerColors[Player.TWO] !== '') {
-            const newRows = Math.max(rows, 4); // Set minimum rows to 4
-            const newCols = Math.max(cols, 4); // Set minimum cols to 4
+            const newRows = Math.max(rows, 4);
+            const newCols = Math.max(cols, 4);
             const newBoard = Array.from({ length: newRows }, () => Array.from({ length: newCols }, () => null));
             this.setState({
                 board: newBoard,
                 currentPlayer: Player.ONE,
                 winner: null,
-                colorsChosen: true, // Now both players have chosen colors
+                colorsChosen: true,
             });
         }
     };
@@ -59,7 +61,7 @@ class App extends Component {
         this.setState({ board: updatedBoard }, () => {
             if (this.checkForWin(row, col)) {
                 this.setState({ winner: currentPlayer });
-                this.updatePlayerScore(currentPlayer);
+                this.updatePlayerScore();
             } else {
                 this.setState({ currentPlayer: currentPlayer === Player.ONE ? Player.TWO : Player.ONE });
             }
@@ -202,13 +204,16 @@ class App extends Component {
         this.setState({ board: null, colorsChosen: false });
     };
 
-    updatePlayerScore = (player) => {
+    updatePlayerScore = () => {
         const { playerScores } = this.state;
-        const playerScore = playerScores[player] + this.countPlayerTokens(player);
+        const player1Score = playerScores[Player.ONE] + this.countPlayerTokens(Player.ONE);
+        const player2Score = playerScores[Player.TWO] + this.countPlayerTokens(Player.TWO);
+
         this.setState((prevState) => ({
             playerScores: {
                 ...prevState.playerScores,
-                [player]: playerScore,
+                [Player.ONE]: player1Score,
+                [Player.TWO]: player2Score,
             },
         }));
     };
@@ -226,56 +231,68 @@ class App extends Component {
         return count;
     };
 
+
+
+
     render() {
         const { rows, cols, board, currentPlayer, winner, playerColors, colorsChosen, playerScores } = this.state;
         return (
             <div className="App">
                 <h1>Connect Four</h1>
+                {!board && <div className="Menu">
+                    <div>
+                        Rows:
+                        <input type="number" min="4" value={rows} onChange={this.handleRowsChange}/>
+                    </div>
+                    <div>
+                        Columns:
+                        <input type="number" min="4" value={cols} onChange={this.handleColsChange}/>
+                    </div>
+
+                    {Object.keys(Player).map((player) => (
+                        <div key={player}>
+                            Player {Player[player]} Color:
+                            <select
+                                value={playerColors[Player[player]]}
+                                onChange={(e) => this.handleColorChange(Player[player], e.target.value)}
+                            >
+                                {colors.map((color) => (
+                                    <option key={color.code} value={color.code}>
+                                        {color.name}
+                                    </option>
+                                ))}
+                            </select>
+                        </div>
+                    ))}
+                    <button onClick={this.initializeBoard} disabled={this.state.colorsChosen}>
+                        Start Game
+                    </button>
+                </div>}
                 <div>
-                    Rows:
-                    <input type="number" min="4" value={rows} onChange={this.handleRowsChange} />
+                    {board && (
+                        <Board
+                            board={board}
+                            playerColors={playerColors}
+                            handleColumnClick={this.handleColumnClick}
+                        />
+                    )}
                 </div>
                 <div>
-                    Columns:
-                    <input type="number" min="4" value={cols} onChange={this.handleColsChange} />
+                    {winner && (
+                        <div className="message">
+                            <p>Player {winner} wins!</p>
+                            <button onClick={this.handleRestart}>New Game</button>
+                        </div>
+
+                    )}
+                    {!winner && <p>Player {currentPlayer}'s turn</p>}
+                    <div className={"statistics"}>Game Statistics:</div>
+                    {Object.keys(Player).map((player) => (
+                        <div key={player}>
+                            Player {Player[player]} Score: {playerScores[Player[player]]}
+                        </div>
+                    ))}
                 </div>
-                {Object.keys(Player).map((player) => (
-                    <div key={player}>
-                        Player {Player[player]} Color:
-                        <select
-                            value={playerColors[Player[player]]}
-                            onChange={(e) => this.handleColorChange(Player[player], e.target.value)}
-                        >
-                            {colors.map((color) => (
-                                <option key={color.code} value={color.code}>
-                                    {color.name}
-                                </option>
-                            ))}
-                        </select>
-                    </div>
-                ))}
-                <button onClick={this.initializeBoard} disabled={this.state.colorsChosen}>
-                    Start Game
-                </button>
-                {board && (
-                    <Board
-                        board={board}
-                        playerColors={playerColors}
-                        handleColumnClick={this.handleColumnClick}
-                    />
-                )}
-                {winner && (
-                    <div className="message">
-                        <p>Player {winner} wins!</p>
-                        <button onClick={this.handleRestart}>New Game</button>
-                    </div>
-                )}
-                {!winner && <p>Player {currentPlayer}'s turn</p>}
-                {Object.keys(Player).map((player) => (
-                    <div key={player}>
-                        Player {Player[player]} Score: {playerScores[Player[player]]}
-                    </div>
-                ))}
             </div>
         );
     }

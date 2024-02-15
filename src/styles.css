@@ -3,9 +3,15 @@
     font-family: Arial, sans-serif;
 }
 
+body {
+    background-image: url('background.jpg'); /* כתובת ה-URL של קובץ התמונה שתשמש כרקע */
+    background-size: cover; /* התאמה של גודל התמונה לגודל החלון */
+    background-position: center; /* מיקום התמונה במרכז המסך */
+    color: white;
+}
+
 h1 {
-    color: #333;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* הוסף אפקט צל טקסט */
+    color: white;
 }
 
 input[type="number"] {
@@ -31,7 +37,7 @@ button:hover {
 
 .board {
     display: inline-block;
-    border: 2px solid #333;
+    border: 10px solid #333;
     border-radius: 10px;
     margin-top: 20px;
     box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.5); /* הוסף אפקט צל ללוח המשחק */
@@ -44,7 +50,9 @@ button:hover {
 .cell {
     width: 50px;
     height: 50px;
-    border: 1px solid #333;
+    border-radius: 30px;
+    margin: 1px;
+    border: 1px solid white;
     box-sizing: border-box;
     transition: background-color 0.3s ease; /* הוסף אנימציה חלקה לשינוי צבע הרקע */
 }
@@ -65,6 +73,10 @@ button:hover {
     font-size: 1.2em;
 }
 
+.statistics {
+    font-size: 1.2em;
+}
+
 .message button {
     margin-top: 10px;
     background-color: #333; /* שנה צבע לכפתור */
@@ -79,3 +91,5 @@ button:hover {
 .message button:hover {
     background-color: #555; /* שנה צבע בעת העטלפות */
 }
+
+
