@@ -41,6 +41,9 @@ button:hover {
     border-radius: 10px;
     margin-top: 20px;
     box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.5); /* הוסף אפקט צל ללוח המשחק */
+    background-image: url('board.jpg'); /* כתובת ה-URL של קובץ התמונה שתשמש כרקע */
+    background-size: cover; /* התאמה של גודל התמונה לגודל החלון */
+    background-position: center; /* מיקום התמונה במרכז המסך */
 }
 
 .row {
