@@ -3,10 +3,12 @@
     font-family: Arial, sans-serif;
 }
 
+
 body {
-    background-image: url('background.jpg'); /* כתובת ה-URL של קובץ התמונה שתשמש כרקע */
+    background-image: url('background.jpg');
     background-size: cover; /* התאמה של גודל התמונה לגודל החלון */
     background-position: center; /* מיקום התמונה במרכז המסך */
+    background-color: #393b38;
     color: white;
 }
 
@@ -41,9 +43,10 @@ button:hover {
     border-radius: 10px;
     margin-top: 20px;
     box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.5); /* הוסף אפקט צל ללוח המשחק */
-    background-image: url('board.jpg'); /* כתובת ה-URL של קובץ התמונה שתשמש כרקע */
-    background-size: cover; /* התאמה של גודל התמונה לגודל החלון */
-    background-position: center; /* מיקום התמונה במרכז המסך */
+    background-color: #393b38;
+    /*background-image: url('board.jpg'); !* כתובת ה-URL של קובץ התמונה שתשמש כרקע *!*/
+    /*background-size: cover; !* התאמה של גודל התמונה לגודל החלון *!*/
+    /*background-position: center; !* מיקום התמונה במרכז המסך *!*/
 }
 
 .row {
@@ -77,7 +80,10 @@ button:hover {
 }
 
 .statistics {
+    color: white;
     font-size: 1.2em;
+    margin-top: -15%;
+    margin-right: 50%
 }
 
 .message button {

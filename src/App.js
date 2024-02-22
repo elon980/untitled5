@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './styles.css'; // Import CSS file for styling
+import './styles.css';
 import Board from './Board';
 
 
@@ -238,6 +238,7 @@ class App extends Component {
         const { rows, cols, board, currentPlayer, winner, playerColors, colorsChosen, playerScores } = this.state;
         return (
             <div className="App">
+
                 <h1>Connect Four</h1>
                 {!board && <div className="Menu">
                     <div>
@@ -270,6 +271,13 @@ class App extends Component {
                 </div>}
                 <div>
                     {board && (
+                        <div>
+                            <button onClick={this.handleRestart}>New Game</button>
+                        </div>
+                    )
+                    }
+
+                    {board && (
                         <Board
                             board={board}
                             playerColors={playerColors}
@@ -285,13 +293,18 @@ class App extends Component {
                         </div>
 
                     )}
-                    {!winner && <p>Player {currentPlayer}'s turn</p>}
-                    <div className={"statistics"}>Game Statistics:</div>
-                    {Object.keys(Player).map((player) => (
-                        <div key={player}>
-                            Player {Player[player]} Score: {playerScores[Player[player]]}
+
+                    {board && (
+                        <div className={"statistics"}>Game Statistics:
+                            {Object.keys(Player).map((player) => (
+                                <div key={player}>
+                                    Player {Player[player]} Score: {playerScores[Player[player]]}
+                                </div>
+                            ))}
                         </div>
-                    ))}
+                    )
+                    }
+
                 </div>
             </div>
         );
