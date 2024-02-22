@@ -80,14 +80,14 @@ class App extends Component {
                 return row;
             }
         }
-        return -1; // Column is full
+        return -1;
     };
 
     checkForWin = (row, col) => {
         const { rows, cols, board } = this.state;
         const player = board[row][col];
 
-        // Check horizontal
+
         let count = 1;
         for (let c = col + 1; c < cols; c++) {
             if (board[row][c] === player) {
@@ -105,7 +105,7 @@ class App extends Component {
         }
         if (count >= 4) return true;
 
-        // Check vertical
+
         count = 1;
         for (let r = row + 1; r < rows; r++) {
             if (board[r][col] === player) {
@@ -123,7 +123,7 @@ class App extends Component {
         }
         if (count >= 4) return true;
 
-        // Check diagonal /
+
         count = 1;
         for (let r = row - 1, c = col + 1; r >= 0 && c < cols; r--, c++) {
             if (board[r][c] === player) {
@@ -141,7 +141,7 @@ class App extends Component {
         }
         if (count >= 4) return true;
 
-        // Check diagonal \
+
         count = 1;
         for (let r = row - 1, c = col - 1; r >= 0 && c >= 0; r--, c--) {
             if (board[r][c] === player) {
@@ -157,9 +157,9 @@ class App extends Component {
                 break;
             }
         }
-        if (count >= 4) return true;
+        return count >= 4;
 
-        return false;
+
     };
 
 
@@ -239,7 +239,8 @@ class App extends Component {
         return (
             <div className="App">
 
-                <h1>Connect Four</h1>
+
+                <h1>Connect4</h1>
                 {!board && <div className="Menu">
                     <div>
                         Rows:
@@ -270,7 +271,7 @@ class App extends Component {
                     </button>
                 </div>}
                 <div>
-                    {board && (
+                    {board &&(
                         <div>
                             <button onClick={this.handleRestart}>New Game</button>
                         </div>
@@ -283,7 +284,7 @@ class App extends Component {
                             playerColors={playerColors}
                             handleColumnClick={this.handleColumnClick}
                         />
-                    )}
+                )}
                 </div>
                 <div>
                     {winner && (
@@ -306,8 +307,8 @@ class App extends Component {
                     }
 
                 </div>
-            </div>
-        );
+                    </div>
+);
     }
 }
 

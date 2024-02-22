@@ -3,8 +3,12 @@ import Cell from './Cell';
 
 class Board extends Component {
     render() {
+
         const { board, playerColors, handleColumnClick } = this.props;
         return (
+
+
+
             <div className="board">
                 {board.map((row, rowIndex) => (
                     <div key={rowIndex} className="row">
